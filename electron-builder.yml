@@ -1,0 +1,14 @@
+directories:
+  output: dist
+  buildResources: build
+appId: com.electron.electron-wordcloud
+compression: store
+asar: true
+files:
+  - filter:
+      - ./dist/main/**/*
+      - ./dist/web/**/*
+mac:
+  category: your.app.category.type
+linux:
+  category: your.app.category.type

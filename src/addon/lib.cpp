@@ -1,8 +1,8 @@
+#include "lib.hpp"
 #include "pugixml.hpp"
 #include <cstring>
 #include <iostream>
 #include <list>
-#include <ranges>
 #include <string_view>
 #include <vector>
 
@@ -32,19 +32,8 @@ std::string getPath(pugi::xml_node node) {
   return result;
 }
 
-int main(int argc, char *argv[]) {
+bool load(std::string_view path) {
   pugi::xml_document doc;
-  pugi::xml_parse_result result = doc.load_file(argv[1]);
-  if (!result)
-    return -1;
-
-  for (;;) {
-    std::string cmd;
-    std::cin >> cmd;
-
-    for (auto const xpath_node : doc.select_nodes(cmd.c_str())) {
-      xpath_node.node().print(std::cout, "  ");
-      std::cout << getPath(xpath_node.node()) << "\n";
-    }
-  }
+  pugi::xml_parse_result result = doc.load_file(path.data());
+  return result;
 }
